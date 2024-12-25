@@ -104,8 +104,15 @@ public class RequestParamController {
      * 참고: model.addAttribute(helloData)코드도 함께 자동 적용
      */
     @ResponseBody
-    @RequestMapping("/model-attribute-v1")
+    @RequestMapping("/model-attribute-v2")
     public String modelAttributeV2(@ModelAttribute HelloData helloData ) {
+        log.info("helloData={}", helloData);
+        return "ok";
+    }
+
+    @ResponseBody
+    @RequestMapping("/model-attribute-v3")
+    public String modelAttributeV3(HelloData helloData) {
         log.info("helloData={}", helloData);
         return "ok";
     }
