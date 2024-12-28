@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,6 +37,11 @@ public class RequestBodyJsonController {
 
     }
 
+    /**
+     * @param messageBody
+     * @return
+     * @throws IOException
+     */
     @ResponseBody
     @PostMapping("/request-body-json-v2")
     public String requestBodyJsonV2(@RequestBody String messageBody) throws IOException {
@@ -47,6 +53,11 @@ public class RequestBodyJsonController {
         return "Ok";
     }
 
+    /**
+     * @param helloData
+     * @return
+     * @throws IOException
+     */
     @ResponseBody
     @PostMapping("/request-body-json-v3")
     public String requestBodyJsonV3(@RequestBody HelloData helloData) throws IOException {
@@ -54,6 +65,11 @@ public class RequestBodyJsonController {
         return "Ok";
     }
 
+    /**
+     * @param helloData
+     * @return
+     * @throws IOException
+     */
     @ResponseBody
     @PostMapping("/request-body-json-v4")
     public String requestBodyJsonV4(@ModelAttribute HelloData helloData) throws IOException {
@@ -61,11 +77,16 @@ public class RequestBodyJsonController {
         return "Ok";
     }
 
+    /**
+     * @param data
+     * @return
+     * @throws IOException
+     */
     @ResponseBody
     @PostMapping("/request-body-json-v5")
     public String requestBodyJsonV5(HttpEntity<HelloData> data) throws IOException {
         HelloData helloData = data.getBody();
-        log.info("username={}", "age={}", helloData.getUsername(),helloData.getAge());
-        return "Ok";
+        log.info("username={}", "age={}", helloData.getUsername(), helloData.getAge());
+        return "ok";
     }
 }
